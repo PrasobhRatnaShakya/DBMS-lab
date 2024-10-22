@@ -1,0 +1,227 @@
+mysql> use laxmi_bank;
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_laxmi_bank |
++----------------------+
+| bankaccount          |
+| bankcustomer         |
+| branch               |
+| depositor            |
+| loan                 |
++----------------------+
+5 rows in set (0.01 sec)
+
+mysql> select *from branch;
++-------------+-------------+--------+
+| Branch_name | Branch_city | assets |
++-------------+-------------+--------+
+| SBI_Parash  | Bangalore   |  20000 |
+| SBI_Pranav  | Bangalore   |  10000 |
+| SBI_Prasobh | Bangalore   |  50000 |
+| SBI_Rishab  | Bangalore   | 100000 |
+| SBI_Sahasra | Bangalore   |  20000 |
++-------------+-------------+--------+
+5 rows in set (0.01 sec)
+
+mysql> select *from BankAccount;
++-------+-------------+---------+
+| accno | Branch_name | Balance |
++-------+-------------+---------+
+|     1 | SBI_Prasobh |    2000 |
+|     2 | SBI_Rishab  |    5000 |
+|     3 | SBI_Parash  |    6000 |
+|     4 | SBI_Pranav  |    9000 |
+|     5 | SBI_Sahasra |    8000 |
+|     6 | SBI_Prasobh |    4000 |
+|     8 | SBI_Rishab  |    4000 |
+|     9 | SBI_Parash  |    3000 |
+|    10 | SBI_Pranav  |    5000 |
+|    11 | SBI_Sahasra |    2000 |
++-------+-------------+---------+
+10 rows in set (0.01 sec)
+
+mysql> select *from BankCustomer;
++---------------+-----------------+---------------+
+| Customer_name | Customer_street | Customer_city |
++---------------+-----------------+---------------+
+| Allegro       | Ranjana         | Kathmandu     |
+| Diminuendo    | Panipokhari     | Kathmandu     |
+| Intermezzo    | Indrachowk      | Kathmandu     |
+| Moderato      | Basantapur      | Kathmandu     |
+| Prestissimo   | Lazimpat        | Kathmandu     |
+| Presto        | Newroad         | Kathmandu     |
++---------------+-----------------+---------------+
+6 rows in set (0.01 sec)
+
+mysql> select *from Depositor;
+Empty set (0.01 sec)
+
+mysql> select *from depositor;
+Empty set (0.00 sec)
+
+mysql> select *from loan;
+Empty set (0.01 sec)
+
+mysql> insert into depositor values("Allegro",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into depositor values("Diminuendo",2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depositor values("Intermezzo",3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depositor values("Moderato",4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depositor values("Prestissimo",5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depositor values("Presto",8);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depositor values("Allegro",9);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depositor values("Diminuendo",10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depositor values("Moderato",11);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into loan values(1,"SBI_Rishab",1000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into loan values(2,"SBI_Prasobh",2000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into loan values(3,"SBI_Parash",3000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into loan values(4,"SBI_Pranav",4000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into loan values(5,"SBI_Sahasra",5000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from depositor;
++---------------+-------+
+| Customer_name | accno |
++---------------+-------+
+| Allegro       |     1 |
+| Diminuendo    |     2 |
+| Intermezzo    |     3 |
+| Moderato      |     4 |
+| Prestissimo   |     5 |
+| Presto        |     8 |
+| Allegro       |     9 |
+| Diminuendo    |    10 |
+| Moderato      |    11 |
++---------------+-------+
+9 rows in set (0.00 sec)
+
+mysql> select *from loan;
++---------+-------------+--------+
+| loan_no | Branch_name | amount |
++---------+-------------+--------+
+|       1 | SBI_Rishab  |   1000 |
+|       2 | SBI_Prasobh |   2000 |
+|       3 | SBI_Parash  |   3000 |
+|       4 | SBI_Pranav  |   4000 |
+|       5 | SBI_Sahasra |   5000 |
++---------+-------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select Branch_name, concat(assets/100000,'Lakhs') assets_in_lakhs from branch;
++-------------+-----------------+
+| Branch_name | assets_in_lakhs |
++-------------+-----------------+
+| SBI_Parash  | 0.2000Lakhs     |
+| SBI_Pranav  | 0.1000Lakhs     |
+| SBI_Prasobh | 0.5000Lakhs     |
+| SBI_Rishab  | 1.0000Lakhs     |
+| SBI_Sahasra | 0.2000Lakhs     |
++-------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from branch;
++-------------+-------------+--------+
+| Branch_name | Branch_city | assets |
++-------------+-------------+--------+
+| SBI_Parash  | Bangalore   |  20000 |
+| SBI_Pranav  | Bangalore   |  10000 |
+| SBI_Prasobh | Bangalore   |  50000 |
+| SBI_Rishab  | Bangalore   | 100000 |
+| SBI_Sahasra | Bangalore   |  20000 |
++-------------+-------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select *, concat(assets/100000,'Lakhs') assets_in_lakhs from branch;
++-------------+-------------+--------+-----------------+
+| Branch_name | Branch_city | assets | assets_in_lakhs |
++-------------+-------------+--------+-----------------+
+| SBI_Parash  | Bangalore   |  20000 | 0.2000Lakhs     |
+| SBI_Pranav  | Bangalore   |  10000 | 0.1000Lakhs     |
+| SBI_Prasobh | Bangalore   |  50000 | 0.5000Lakhs     |
+| SBI_Rishab  | Bangalore   | 100000 | 1.0000Lakhs     |
+| SBI_Sahasra | Bangalore   |  20000 | 0.2000Lakhs     |
++-------------+-------------+--------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select branch_name;
+ERROR 1054 (42S22): Unknown column 'branch_name' in 'field list'
+mysql> select Branch_name from branch;
++-------------+
+| Branch_name |
++-------------+
+| SBI_Parash  |
+| SBI_Pranav  |
+| SBI_Prasobh |
+| SBI_Rishab  |
+| SBI_Sahasra |
++-------------+
+5 rows in set (0.00 sec)
+
+mysql> select d.Customername from Depositor d, BankAccount b where b.Branch_name='SBI_Prasobh' and d.a
+ccno=b.accno group by d.Customername having count(d.accno)>=2;
+ERROR 1054 (42S22): Unknown column 'd.Customername' in 'field list'
+mysql> select d.Customer_name from Depositor d, BankAccount b where b.Branch_name='SBI_Prasobh' and d.
+accno=b.accno group by d.Customer_name having count(d.accno)>=2;
+Empty set (0.00 sec)
+
+mysql> create view sum_of_loan
+    -> as select Branch_name, sum(Balance)
+    -> from BankAccount
+    -> group by Branch_name;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *from sum_of_loan;
++-------------+--------------+
+| Branch_name | sum(Balance) |
++-------------+--------------+
+| SBI_Parash  |         9000 |
+| SBI_Pranav  |        14000 |
+| SBI_Prasobh |         6000 |
+| SBI_Rishab  |         9000 |
+| SBI_Sahasra |        10000 |
++-------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select bc.Customer_name, concat(Balance+1000,' rupees') Updated_Balance from BankAccount b, Ban
+kCustomer bc, depositor d where bc.Customer_name=d.Customer_name and b.accno=d.accno and bc.Customer_c
+ity='Kathmandu';
++---------------+-----------------+
+| Customer_name | Updated_Balance |
++---------------+-----------------+
+| Allegro       | 3000 rupees     |
+| Allegro       | 4000 rupees     |
+| Diminuendo    | 6000 rupees     |
+| Diminuendo    | 6000 rupees     |
+| Intermezzo    | 7000 rupees     |
+| Moderato      | 10000 rupees    |
+| Moderato      | 3000 rupees     |
+| Prestissimo   | 9000 rupees     |
+| Presto        | 5000 rupees     |
++---------------+-----------------+
+9 rows in set (0.00 sec)
